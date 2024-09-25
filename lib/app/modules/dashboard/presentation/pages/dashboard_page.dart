@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:magic/app/modules/dashboard/presentation/widgets/workout_item.dart';
+import 'package:magic/app/modules/workout/presentation/pages/new_workout_page.dart';
 import 'package:magic/app/shared/presentation/widgets/magic_icon.dart';
 import 'package:magic/core/framework/theme/colors/app_theme_provider.dart';
+import 'package:magic/core/navigation/navigator.dart';
 
 class DashboardPage extends ConsumerStatefulWidget {
   const DashboardPage({super.key});
@@ -31,11 +33,10 @@ class _DashboardPageState extends ConsumerState<DashboardPage> {
               ),
               child: Column(
                 children: [
-                  Align(
+                  const Align(
                     alignment: Alignment.centerLeft,
                     child: MagicIcon(
                       icon: Icons.person_rounded,
-                      color: colors.always26292C,
                     ),
                   ),
                   const Text(
@@ -107,7 +108,9 @@ class _DashboardPageState extends ConsumerState<DashboardPage> {
                       ),
                       MagicIcon(
                         icon: Icons.add_rounded,
-                        onTap: () {},
+                        onTap: () {
+                          pushTo(context, const NewWorkoutPage());
+                        },
                       ),
                     ],
                   ),
