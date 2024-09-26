@@ -51,7 +51,10 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                         ],
                       ),
                       SizedBox(height: 24),
-                      CustomTextField(headerText: "Email"),
+                      CustomTextField(
+                        headerText: "Email",
+                        keyboardType: TextInputType.emailAddress,
+                      ),
                       SizedBox(height: 24),
                       CustomTextField(
                         headerText: "Password",

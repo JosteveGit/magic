@@ -38,6 +38,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                       const SizedBox(height: 24),
                       const CustomTextField(
                         headerText: "Email",
+                        keyboardType: TextInputType.emailAddress,
                       ),
                       const SizedBox(height: 24),
                       const CustomTextField(
