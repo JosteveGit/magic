@@ -92,6 +92,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                         keyboardType: TextInputType.emailAddress,
                         onChanged: (value) {
                           email = value;
+                          setState(() {});
                         },
                         validator: (value) => isValidEmailAddress(value)
                             ? null
@@ -103,6 +104,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                         isPassword: true,
                         onChanged: (value) {
                           password = value;
+                          setState(() {});
                         },
                         validator: isValidPassword,
                       ),
@@ -112,6 +114,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                         isPassword: true,
                         onChanged: (value) {
                           confirmPassword = value;
+                          setState(() {});
                         },
                         validator: (value) {
                           if (value != password) {
