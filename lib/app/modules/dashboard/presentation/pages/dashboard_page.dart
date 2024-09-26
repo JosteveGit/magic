@@ -4,6 +4,9 @@ import 'package:magic/app/modules/dashboard/presentation/providers/get_workouts/
 import 'package:magic/app/modules/dashboard/presentation/widgets/workout_item.dart';
 import 'package:magic/app/modules/profile/presentation/pages/profile_page.dart';
 import 'package:magic/app/modules/workout/presentation/pages/workout_page.dart';
+import 'package:magic/app/modules/workout/presentation/providers/delete_workout/delete_workout_provider.dart';
+import 'package:magic/app/modules/workout/presentation/providers/delete_workout/delete_workout_state.dart';
+import 'package:magic/app/shared/extensions/context_extension.dart';
 import 'package:magic/app/shared/functions/app_functions.dart';
 import 'package:magic/app/shared/presentation/widgets/custom_button.dart';
 import 'package:magic/app/shared/presentation/widgets/loader.dart';
@@ -23,11 +26,15 @@ class _DashboardPageState extends ConsumerState<DashboardPage> {
   void initState() {
     onInit(
       () {
-        final notifier = ref.read(getWorkoutsProvider.notifier);
-        notifier.getWorkouts();
+        getWorkouts();
       },
     );
     super.initState();
+  }
+
+  void getWorkouts() {
+    final notifier = ref.read(getWorkoutsProvider.notifier);
+    notifier.getWorkouts();
   }
 
   @override
@@ -35,7 +42,15 @@ class _DashboardPageState extends ConsumerState<DashboardPage> {
     final colors = ref.read(appThemeProvider).colors;
     final topMargin = MediaQuery.of(context).padding.top;
     final workoutsState = ref.watch(getWorkoutsProvider);
-
+    ref.listen(
+      deleteWorkoutProvider,
+      (prev, next) {
+        if (next is DeleteWorkoutStateError) {
+          getWorkouts();
+          context.showError(next.message);
+        }
+      },
+    );
     return Scaffold(
       backgroundColor: colors.alwaysBlack,
       body: workoutsState.when(
@@ -137,11 +152,12 @@ class _DashboardPageState extends ConsumerState<DashboardPage> {
                 ),
               ),
               Expanded(
-                child: Container(
-                  padding: const EdgeInsets.all(20),
-                  child: Column(
-                    children: [
-                      Row(
+                child: Column(
+                  children: [
+                    const SizedBox(height: 10),
+                    Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Row(
                         children: [
                           Expanded(
                             child: Text(
@@ -161,36 +177,49 @@ class _DashboardPageState extends ConsumerState<DashboardPage> {
                           ),
                         ],
                       ),
-                      const SizedBox(height: 20),
-                      Expanded(
-                        child: Builder(
-                          builder: (context) {
-                            if (workouts.isEmpty) {
-                              return Center(
-                                child: Text(
-                                  "No workouts yet",
-                                  style: TextStyle(
-                                    color: colors.alwaysWhite,
-                                    fontSize: 16,
-                                  ),
+                    ),
+                    const SizedBox(height: 10),
+                    Expanded(
+                      child: Builder(
+                        builder: (context) {
+                          if (workouts.isEmpty) {
+                            return Center(
+                              child: Text(
+                                "No workouts yet",
+                                style: TextStyle(
+                                  color: colors.alwaysWhite,
+                                  fontSize: 16,
                                 ),
-                              );
-                            }
-                            return SingleChildScrollView(
-                              child: Column(
-                                children: [
-                                  for (final workout in workouts) ...[
-                                    WorkoutItem(workout: workout),
-                                    const SizedBox(height: 15),
-                                  ],
-                                ],
                               ),
                             );
-                          },
-                        ),
+                          }
+                          return SingleChildScrollView(
+                            child: Column(
+                              children: [
+                                for (final workout in workouts) ...[
+                                  Dismissible(
+                                    onDismissed: (_) {
+                                      final deleteNotifier = ref.read(
+                                        deleteWorkoutProvider.notifier,
+                                      );
+                                      deleteNotifier.deleteWorkout(workout.id);
+                                    },
+                                    key: ValueKey(workout.id),
+                                    child: Container(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 20),
+                                      child: WorkoutItem(workout: workout),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 15),
+                                ],
+                              ],
+                            ),
+                          );
+                        },
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               )
             ],
@@ -210,10 +239,7 @@ class _DashboardPageState extends ConsumerState<DashboardPage> {
               const SizedBox(height: 20),
               CustomButton(
                 text: "Retry",
-                onPressed: () {
-                  final notifier = ref.read(getWorkoutsProvider.notifier);
-                  notifier.getWorkouts();
-                },
+                onPressed: getWorkouts,
               ),
             ],
           );
