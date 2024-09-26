@@ -21,7 +21,7 @@ class AuthenticationService implements AuthenticationServiceInterface {
   AuthenticationService({required this.auth, required this.firestore});
   @override
   ApiFuture<void> forgotPassword({required String email}) {
-    return apiFunction(
+    return futureFunction(
       () async {
         await auth.sendPasswordResetEmail(email: email);
       },
@@ -33,7 +33,7 @@ class AuthenticationService implements AuthenticationServiceInterface {
     required String email,
     required String password,
   }) {
-    return apiFunction(
+    return futureFunction(
       () async {
         final cred = await auth.signInWithEmailAndPassword(
           email: email,
@@ -53,7 +53,7 @@ class AuthenticationService implements AuthenticationServiceInterface {
     required String firstName,
     required String lastName,
   }) {
-    return apiFunction(
+    return futureFunction(
       () async {
         final creds = await auth.createUserWithEmailAndPassword(
           email: email,

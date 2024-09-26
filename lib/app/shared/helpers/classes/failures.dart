@@ -1,6 +1,8 @@
 import 'package:dartz/dartz.dart';
 
 typedef ApiFuture<T> = Future<Either<T, FailureResponse>>;
+typedef ApiStream<T> = Stream<Either<T, FailureResponse>>;
+
 
 class FailureResponse<T> {
   final String message;
