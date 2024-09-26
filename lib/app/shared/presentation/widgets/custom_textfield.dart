@@ -139,7 +139,7 @@ class _CustomTextFieldState extends ConsumerState<CustomTextField> {
                 ),
               ],
             ),
-            const SizedBox(height: 4),
+            const SizedBox(height: 6),
           ],
           Container(
             padding: widget.padding ??

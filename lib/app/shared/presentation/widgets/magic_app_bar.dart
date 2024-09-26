@@ -6,10 +6,12 @@ import 'package:magic/core/framework/theme/colors/app_theme_provider.dart';
 class MagicAppBar extends ConsumerWidget {
   final String title;
   final List<Widget>? trailing;
+  final bool hasBackButton;
   const MagicAppBar({
     super.key,
     required this.title,
     this.trailing,
+    this.hasBackButton = true,
   });
 
   @override
@@ -18,8 +20,10 @@ class MagicAppBar extends ConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const MagicBackButton(),
-        const SizedBox(height: 24),
+        if (hasBackButton) ...[
+          const MagicBackButton(),
+          const SizedBox(height: 24),
+        ],
         Row(
           children: [
             Expanded(
