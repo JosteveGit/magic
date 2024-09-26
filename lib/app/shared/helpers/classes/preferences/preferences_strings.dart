@@ -1,3 +1,3 @@
 class PreferencesStrings {
-  static const uid = 'uid';
+  static const userModel = 'userModel';
 }

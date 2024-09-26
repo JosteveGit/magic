@@ -29,7 +29,8 @@ class AuthenticationRepository implements AuthenticationRepositoryInterface {
   }) async {
     final response = await service.login(email: email, password: password);
     if (response.isLeft()) {
-      Preferences.setString(key: PreferencesStrings.uid, value: response.left);
+      Preferences.setModel(
+          key: PreferencesStrings.userModel, model: response.left);
     }
     return response;
   }
@@ -48,7 +49,8 @@ class AuthenticationRepository implements AuthenticationRepositoryInterface {
       lastName: lastName,
     );
     if (response.isLeft()) {
-      Preferences.setString(key: PreferencesStrings.uid, value: response.left);
+      Preferences.setModel(
+          key: PreferencesStrings.userModel, model: response.left);
     }
     return response;
   }
