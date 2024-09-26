@@ -88,7 +88,7 @@ class _SetPageState extends ConsumerState<SetPage> {
                           for (final type in types)
                             CustomDropDownItem(
                               value: type.$1,
-                              text: capitalize(type.$1.name),
+                              text: capitalize(type.$1.cleanName),
                               prefix: Builder(builder: (context) {
                                 final isNotSelected = selectedType != type.$1;
                                 return Container(
