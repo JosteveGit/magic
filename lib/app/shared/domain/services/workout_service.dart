@@ -60,6 +60,7 @@ class WorkoutService implements WorkoutServiceInterface {
         yield* firestore
             .collection("workouts")
             .where("uid", isEqualTo: uid)
+            .orderBy("created_at", descending: true)
             .snapshots()
             .map((event) {
           return event.docs
