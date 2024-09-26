@@ -25,3 +25,16 @@ String capitalizeEach(String it) => it.split(" ").map(capitalize).join(" ");
 
 
 String zeroPrefixNumber(int number) => number < 10 ? "0$number" : "$number";
+
+
+String numberSuffixWord(int number, String word) {
+  String suffix = "s";
+  if (word.endsWith('y')) {
+    suffix = "ies";
+  }
+  if (word.endsWith('s')) {
+    suffix = "es";
+  }
+
+  return "$number ${number > 1 ? "$word$suffix" : word}";
+}

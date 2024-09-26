@@ -9,5 +9,5 @@ abstract interface class WorkoutRepositoryInterface {
     required String workoutId,
   });
   ApiFuture<void> deleteWorkout(String workoutId);
-  ApiStream<List<WorkoutModel>> streamWorkouts(String uid);
+  ApiStream<List<WorkoutModel>> streamWorkouts();
 }

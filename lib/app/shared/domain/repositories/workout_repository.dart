@@ -4,6 +4,7 @@ import 'package:magic/app/shared/data/models/workout_model.dart';
 import 'package:magic/app/shared/domain/repositories/interfaces/workout_repository_interface.dart';
 import 'package:magic/app/shared/domain/services/interfaces/workout_service_interface.dart';
 import 'package:magic/app/shared/domain/services/workout_service.dart';
+import 'package:magic/app/shared/functions/app_functions.dart';
 import 'package:magic/app/shared/helpers/classes/failures.dart';
 
 final workoutRepositoryProvider = Provider<WorkoutRepositoryInterface>((ref) {
@@ -18,7 +19,8 @@ class WorkoutRepository implements WorkoutRepositoryInterface {
 
   @override
   ApiFuture<void> createWorkout(List<SetModel> sets) {
-    return service.createWorkout(sets);
+    final uid = getUser()!.uid;
+    return service.createWorkout(sets, uid);
   }
 
   @override
@@ -35,7 +37,8 @@ class WorkoutRepository implements WorkoutRepositoryInterface {
   }
 
   @override
-  ApiStream<List<WorkoutModel>> streamWorkouts(String uid) {
+  ApiStream<List<WorkoutModel>> streamWorkouts() {
+    final uid = getUser()!.uid;
     return service.streamWorkouts(uid);
   }
 }

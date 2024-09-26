@@ -15,10 +15,10 @@ import 'package:magic/core/framework/theme/colors/app_theme_provider.dart';
 import 'package:magic/core/navigation/navigator.dart';
 
 class WorkoutPage extends ConsumerStatefulWidget {
-  final List<WorkoutModel> workouts;
+  final WorkoutModel? workout;
   const WorkoutPage({
     super.key,
-    this.workouts = const [],
+    this.workout,
   });
 
   @override
@@ -27,6 +27,15 @@ class WorkoutPage extends ConsumerStatefulWidget {
 
 class _WorkoutPageState extends ConsumerState<WorkoutPage> {
   final sets = <SetModel>[];
+
+  @override
+  void initState() {
+    if (widget.workout != null) {
+      sets.addAll(widget.workout!.sets);
+    }
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final colors = ref.read(appThemeProvider).colors;
@@ -152,7 +161,7 @@ class _WorkoutPageState extends ConsumerState<WorkoutPage> {
               CustomButton(
                 text: "Save",
                 onPressed: () {
-                  if (widget.workouts.isEmpty) {
+                  if (widget.workout == null) {
                     final createNotifier = ref.read(
                       createWorkoutProvider.notifier,
                     );

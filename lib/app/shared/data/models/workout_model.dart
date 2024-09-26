@@ -1,10 +1,25 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:magic/app/modules/workout/data/models/set_model.dart';
+import 'package:magic/app/shared/functions/date_functions.dart';
 
 class WorkoutModel {
   final List<SetModel> sets;
   final String id;
   final Timestamp date;
+
+  double get totalWeight {
+    return sets.fold(0.0, (previousValue, element) => previousValue + element.weight);
+  }
+
+  int get totalSets => sets.length;
+
+  String get formattedDate{
+    return formatDate(date.toDate());
+  }
+
+  List<SetType> get types {
+    return sets.map((e) => e.setType).toSet().toList();
+  }
 
   WorkoutModel({
     required this.sets,

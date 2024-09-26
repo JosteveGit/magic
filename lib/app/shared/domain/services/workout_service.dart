@@ -17,11 +17,12 @@ class WorkoutService implements WorkoutServiceInterface {
 
   WorkoutService({required this.firestore});
   @override
-  ApiFuture<void> createWorkout(List<SetModel> sets) {
+  ApiFuture<void> createWorkout(List<SetModel> sets, String uid) {
     return futureFunction(
       () async {
         await firestore.collection("workouts").add({
           "sets": sets.map((e) => e.toJson()).toList(),
+          "uid": uid,
           "created_at": FieldValue.serverTimestamp(),
         });
       },

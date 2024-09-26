@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:magic/app/shared/helpers/classes/media/pngs.dart';
-import 'package:magic/app/shared/presentation/widgets/magic_icon.dart';
+import 'package:magic/app/modules/workout/presentation/widgets/set_type_image.dart';
+import 'package:magic/app/shared/data/models/workout_model.dart';
+import 'package:magic/app/shared/functions/string_functions.dart';
 import 'package:magic/core/framework/theme/colors/app_theme_provider.dart';
 
 class WorkoutItem extends ConsumerWidget {
+  final WorkoutModel workout;
   const WorkoutItem({
     super.key,
+    required this.workout,
   });
 
   @override
@@ -28,7 +31,7 @@ class WorkoutItem extends ConsumerWidget {
           Row(
             children: [
               Text(
-                "Workout 1",
+                workout.formattedDate,
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w500,
@@ -55,7 +58,7 @@ class WorkoutItem extends ConsumerWidget {
               ),
               const SizedBox(width: 5),
               Text(
-                "100kg",
+                "${workout.totalWeight} KG",
                 style: TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w300,
@@ -80,7 +83,7 @@ class WorkoutItem extends ConsumerWidget {
               ),
               const SizedBox(width: 5),
               Text(
-                "30 sets",
+                numberSuffixWord(workout.totalSets, "set"),
                 style: TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w300,
@@ -90,37 +93,11 @@ class WorkoutItem extends ConsumerWidget {
             ],
           ),
           const SizedBox(height: 20),
-          Row(
+          Wrap(
+            spacing: 5,
+            runSpacing: 5,
             children: [
-              MagicImage(
-                image: Pngs.barbellRow,
-                color: colors.primary,
-                iconColor: colors.secondary,
-              ),
-              const SizedBox(width: 5),
-              MagicImage(
-                image: Pngs.benchPress,
-                color: colors.primary,
-                iconColor: colors.secondary,
-              ),
-              const SizedBox(width: 5),
-              MagicImage(
-                image: Pngs.deadlift,
-                color: colors.primary,
-                iconColor: colors.secondary,
-              ),
-              const SizedBox(width: 5),
-              MagicImage(
-                image: Pngs.squat,
-                color: colors.primary,
-                iconColor: colors.secondary,
-              ),
-              const SizedBox(width: 5),
-              MagicImage(
-                image: Pngs.shoulderPress,
-                color: colors.primary,
-                iconColor: colors.secondary,
-              ),
+              for (final type in workout.types) SetTypeImage(setType: type),
             ],
           ),
         ],

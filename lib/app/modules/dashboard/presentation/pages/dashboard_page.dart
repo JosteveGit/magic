@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:magic/app/modules/dashboard/presentation/providers/get_workouts/get_workouts_provider.dart';
 import 'package:magic/app/modules/dashboard/presentation/widgets/workout_item.dart';
 import 'package:magic/app/modules/profile/presentation/pages/profile_page.dart';
 import 'package:magic/app/modules/workout/presentation/pages/workout_page.dart';
+import 'package:magic/app/shared/functions/app_functions.dart';
+import 'package:magic/app/shared/presentation/widgets/custom_button.dart';
+import 'package:magic/app/shared/presentation/widgets/loader.dart';
 import 'package:magic/app/shared/presentation/widgets/magic_icon.dart';
 import 'package:magic/core/framework/theme/colors/app_theme_provider.dart';
 import 'package:magic/core/navigation/navigator.dart';
@@ -16,125 +20,203 @@ class DashboardPage extends ConsumerStatefulWidget {
 
 class _DashboardPageState extends ConsumerState<DashboardPage> {
   @override
+  void initState() {
+    onInit(
+      () {
+        final notifier = ref.read(getWorkoutsProvider.notifier);
+        notifier.getWorkouts();
+      },
+    );
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final colors = ref.read(appThemeProvider).colors;
     final topMargin = MediaQuery.of(context).padding.top;
+    final workoutsState = ref.watch(getWorkoutsProvider);
+
     return Scaffold(
       backgroundColor: colors.alwaysBlack,
-      body: Column(
-        children: [
-          Container(
-            width: double.maxFinite,
-            color: colors.primary,
-            padding: EdgeInsets.only(
-              top: topMargin,
-              left: 20,
-              right: 20,
-            ),
-            child: Column(
-              children: [
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: MagicIcon(
-                    icon: Icons.person_rounded,
-                    onTap: () {
-                      pushTo(context, const ProfilePage());
-                    },
-                  ),
+      body: workoutsState.when(
+        initial: () {
+          return const SizedBox();
+        },
+        loading: () {
+          return Loader.small();
+        },
+        success: (workouts) {
+          final totalWeight = workouts.fold<double>(
+            0,
+            (previousValue, element) => previousValue + element.totalWeight,
+          );
+          final totalSets = workouts.fold<int>(
+            0,
+            (previousValue, element) => previousValue + element.totalSets,
+          );
+          return Column(
+            children: [
+              Container(
+                width: double.maxFinite,
+                color: colors.primary,
+                padding: EdgeInsets.only(
+                  top: topMargin,
+                  left: 20,
+                  right: 20,
                 ),
-                const Text(
-                  "30",
-                  style: TextStyle(
-                    fontSize: 80,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const Text("Total workouts"),
-                const SizedBox(height: 30),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                child: Column(
                   children: [
-                    const Icon(
-                      Icons.fitness_center_rounded,
-                      size: 18,
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: MagicIcon(
+                        icon: Icons.person_rounded,
+                        onTap: () {
+                          pushTo(context, const ProfilePage());
+                        },
+                      ),
                     ),
-                    const SizedBox(width: 5),
-                    const Text(
-                      "30 Total KG",
+                    Text(
+                      workouts.length.toString(),
                       style: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w300,
+                        fontSize: 80,
+                        fontWeight: FontWeight.bold,
+                        color: colors.secondary,
                       ),
                     ),
-                    Container(
-                      width: 5,
-                      height: 5,
-                      margin: const EdgeInsets.symmetric(horizontal: 10),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: colors.alwaysBlack,
-                      ),
-                    ),
-                    const Icon(
-                      Icons.sports_gymnastics_rounded,
-                      size: 20,
-                    ),
-                    const SizedBox(width: 5),
-                    const Text(
-                      "30 Total sets",
+                    Text(
+                      "Total workouts",
                       style: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w300,
+                        color: colors.secondary,
                       ),
                     ),
-                  ],
-                ),
-                const SizedBox(height: 30),
-              ],
-            ),
-          ),
-          Expanded(
-            child: Container(
-              padding: const EdgeInsets.all(20),
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Text(
-                          "My workouts",
+                    const SizedBox(height: 30),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.fitness_center_rounded,
+                          size: 18,
+                          color: colors.secondary,
+                        ),
+                        const SizedBox(width: 5),
+                        Text(
+                          "$totalWeight total KG",
                           style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: colors.alwaysWhite,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w300,
+                            color: colors.secondary,
                           ),
                         ),
+                        Container(
+                          width: 5,
+                          height: 5,
+                          margin: const EdgeInsets.symmetric(horizontal: 10),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: colors.secondary,
+                          ),
+                        ),
+                        Icon(
+                          Icons.sports_gymnastics_rounded,
+                          size: 20,
+                          color: colors.secondary,
+                        ),
+                        const SizedBox(width: 5),
+                        Text(
+                          "$totalSets total sets",
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w300,
+                            color: colors.secondary,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 30),
+                  ],
+                ),
+              ),
+              Expanded(
+                child: Container(
+                  padding: const EdgeInsets.all(20),
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              "My workouts",
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: colors.alwaysWhite,
+                              ),
+                            ),
+                          ),
+                          MagicIcon(
+                            icon: Icons.add_rounded,
+                            onTap: () {
+                              pushTo(context, const WorkoutPage());
+                            },
+                          ),
+                        ],
                       ),
-                      MagicIcon(
-                        icon: Icons.add_rounded,
-                        onTap: () {
-                          pushTo(context, const WorkoutPage());
-                        },
+                      Expanded(
+                        child: Builder(
+                          builder: (context) {
+                            if (workouts.isEmpty) {
+                              return Center(
+                                child: Text(
+                                  "No workouts yet",
+                                  style: TextStyle(
+                                    color: colors.alwaysWhite,
+                                    fontSize: 16,
+                                  ),
+                                ),
+                              );
+                            }
+                            return SingleChildScrollView(
+                              child: Column(
+                                children: [
+                                  for (final workout in workouts) ...[
+                                    const SizedBox(height: 15),
+                                    WorkoutItem(workout: workout),
+                                  ],
+                                ],
+                              ),
+                            );
+                          },
+                        ),
                       ),
                     ],
                   ),
-                  const Expanded(
-                    child: SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          SizedBox(height: 24),
-                          WorkoutItem(),
-                          SizedBox(height: 24),
-                          WorkoutItem(),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
+                ),
+              )
+            ],
+          );
+        },
+        error: (message) {
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                message,
+                style: TextStyle(
+                  color: colors.alwaysWhite,
+                  fontSize: 16,
+                ),
               ),
-            ),
-          )
-        ],
+              const SizedBox(height: 20),
+              CustomButton(
+                text: "Retry",
+                onPressed: () {
+                  final notifier = ref.read(getWorkoutsProvider.notifier);
+                  notifier.getWorkouts();
+                },
+              ),
+            ],
+          );
+        },
       ),
     );
   }
