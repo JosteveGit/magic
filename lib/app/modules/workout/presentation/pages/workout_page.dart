@@ -2,7 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:magic/app/modules/workout/data/models/set_model.dart';
 import 'package:magic/app/modules/workout/presentation/pages/set_page.dart';
+import 'package:magic/app/modules/workout/presentation/providers/add_workout/create_work_provider.dart';
+import 'package:magic/app/modules/workout/presentation/providers/add_workout/create_work_state.dart';
 import 'package:magic/app/modules/workout/presentation/widgets/set_item.dart';
+import 'package:magic/app/shared/data/models/workout_model.dart';
+import 'package:magic/app/shared/extensions/context_extension.dart';
+import 'package:magic/app/shared/functions/dialog_functions.dart';
 import 'package:magic/app/shared/presentation/widgets/custom_button.dart';
 import 'package:magic/app/shared/presentation/widgets/magic_app_bar.dart';
 import 'package:magic/app/shared/presentation/widgets/magic_icon.dart';
@@ -10,7 +15,11 @@ import 'package:magic/core/framework/theme/colors/app_theme_provider.dart';
 import 'package:magic/core/navigation/navigator.dart';
 
 class WorkoutPage extends ConsumerStatefulWidget {
-  const WorkoutPage({super.key});
+  final List<WorkoutModel> workouts;
+  const WorkoutPage({
+    super.key,
+    this.workouts = const [],
+  });
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _WorkoutPageState();
@@ -21,6 +30,22 @@ class _WorkoutPageState extends ConsumerState<WorkoutPage> {
   @override
   Widget build(BuildContext context) {
     final colors = ref.read(appThemeProvider).colors;
+    ref.listen(
+      createWorkoutProvider,
+      (prev, next) {
+        if (next is CreateWorkoutStateLoading) {
+          showLoadingDialog(context);
+        }
+        if (next is CreateWorkoutStateSuccess) {
+          pop(context);
+          pop(context);
+        }
+        if (next is CreateWorkoutStateError) {
+          pop(context);
+          context.showError(next.message);
+        }
+      },
+    );
     return Scaffold(
       backgroundColor: colors.alwaysBlack,
       body: SafeArea(
@@ -126,7 +151,14 @@ class _WorkoutPageState extends ConsumerState<WorkoutPage> {
               ),
               CustomButton(
                 text: "Save",
-                onPressed: () {},
+                onPressed: () {
+                  if (widget.workouts.isEmpty) {
+                    final createNotifier = ref.read(
+                      createWorkoutProvider.notifier,
+                    );
+                    createNotifier.createWorkout(sets);
+                  }
+                },
                 validator: () {
                   return sets.isNotEmpty;
                 },

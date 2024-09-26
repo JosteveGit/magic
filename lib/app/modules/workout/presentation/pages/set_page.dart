@@ -57,6 +57,13 @@ class _SetPageState extends ConsumerState<SetPage> {
   }
 
   @override
+  void dispose() {
+    weightController.dispose();
+    repetitionsController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final colors = ref.read(appThemeProvider).colors;
     return Scaffold(
