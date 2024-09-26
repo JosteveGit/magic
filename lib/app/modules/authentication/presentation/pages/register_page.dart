@@ -68,7 +68,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                               headerText: "First name",
                               onChanged: (value) {
                                 setState(() {
-                                  firstName = value;
+                                  firstName = value.trim();
                                 });
                               },
                             ),
@@ -79,7 +79,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                               headerText: "Last name",
                               onChanged: (value) {
                                 setState(() {
-                                  lastName = value;
+                                  lastName = value.trim();
                                 });
                               },
                             ),

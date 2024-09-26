@@ -2,7 +2,12 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:magic/app/modules/authentication/presentation/pages/register_page.dart';
+import 'package:magic/app/modules/authentication/presentation/providers/login/login_provider.dart';
+import 'package:magic/app/modules/authentication/presentation/providers/login/login_state.dart';
 import 'package:magic/app/modules/dashboard/presentation/pages/dashboard_page.dart';
+import 'package:magic/app/shared/extensions/context_extension.dart';
+import 'package:magic/app/shared/functions/dialog_functions.dart';
+import 'package:magic/app/shared/functions/string_functions.dart';
 import 'package:magic/app/shared/presentation/widgets/custom_button.dart';
 import 'package:magic/app/shared/presentation/widgets/custom_textfield.dart';
 import 'package:magic/app/shared/presentation/widgets/magic_app_bar.dart';
@@ -17,9 +22,27 @@ class LoginPage extends ConsumerStatefulWidget {
 }
 
 class _LoginPageState extends ConsumerState<LoginPage> {
+  String email = "";
+  String password = "";
   @override
   Widget build(BuildContext context) {
     final colors = ref.read(appThemeProvider).colors;
+    ref.listen(
+      loginProvider,
+      (prev, next) {
+        if (next is LoginStateLoading) {
+          showLoadingDialog(context);
+        }
+        if (next is LoginStateSuccess) {
+          pop(context);
+          pushToAndClearStack(context, const DashboardPage());
+        }
+        if (next is LoginStateError) {
+          pop(context);
+          context.showError(next.message);
+        }
+      },
+    );
     return Scaffold(
       backgroundColor: colors.alwaysBlack,
       body: Container(
@@ -36,14 +59,27 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                   child: Column(
                     children: [
                       const SizedBox(height: 24),
-                      const CustomTextField(
+                      CustomTextField(
                         headerText: "Email",
                         keyboardType: TextInputType.emailAddress,
+                        onChanged: (value) {
+                          email = value;
+                          setState(() {});
+                        },
+                        validator: (value) {
+                          return isValidEmailAddress(value)
+                              ? null
+                              : "Invalid email address";
+                        },
                       ),
                       const SizedBox(height: 24),
-                      const CustomTextField(
+                      CustomTextField(
                         headerText: "Password",
                         isPassword: true,
+                        onChanged: (value) {
+                          password = value;
+                          setState(() {});
+                        },
                       ),
                       Align(
                         alignment: Alignment.centerRight,
@@ -62,7 +98,11 @@ class _LoginPageState extends ConsumerState<LoginPage> {
               CustomButton(
                 text: "Login",
                 onPressed: () {
-                  pushTo(context, const DashboardPage());
+                  final notifier = ref.read(loginProvider.notifier);
+                  notifier.login(email: email, password: password);
+                },
+                validator: () {
+                  return isValidEmailAddress(email) && password.isNotEmpty;
                 },
               ),
               const SizedBox(height: 24),
