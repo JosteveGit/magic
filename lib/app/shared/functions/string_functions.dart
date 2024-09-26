@@ -22,3 +22,6 @@ String capitalize(String it) => it.isEmpty
     : it[0].toUpperCase() + it.substring(1, it.length).toLowerCase();
 
 String capitalizeEach(String it) => it.split(" ").map(capitalize).join(" ");
+
+
+String zeroPrefixNumber(int number) => number < 10 ? "0$number" : "$number";
