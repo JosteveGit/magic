@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "110578974524",
+    "project_id": "magic-be071",
+    "storage_bucket": "magic-be071.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:110578974524:android:2fd26646c5668216012839",
+        "android_client_info": {
+          "package_name": "com.josteve.magic"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1qP5AU3q0psK94Pc09RvkY3S0wXgt66A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
