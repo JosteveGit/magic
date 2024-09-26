@@ -161,6 +161,7 @@ class _DashboardPageState extends ConsumerState<DashboardPage> {
                           ),
                         ],
                       ),
+                      const SizedBox(height: 20),
                       Expanded(
                         child: Builder(
                           builder: (context) {
@@ -179,8 +180,8 @@ class _DashboardPageState extends ConsumerState<DashboardPage> {
                               child: Column(
                                 children: [
                                   for (final workout in workouts) ...[
-                                    const SizedBox(height: 15),
                                     WorkoutItem(workout: workout),
+                                    const SizedBox(height: 15),
                                   ],
                                 ],
                               ),
