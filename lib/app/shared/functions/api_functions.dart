@@ -18,8 +18,12 @@ ApiFuture<T> apiFunction<T>(
   }
 
   try {
-    return actualFunc();
+    return await actualFunc();
   } on FirebaseAuthException catch (e) {
+    if (e.code == "invalid-credential") {
+      return right(const FailureResponse("Invalid credentials"));
+    }
+
     return right(FailureResponse(e.message ?? "An error occurred"));
   } on SocketException {
     return right(const InternetFailureResponse());

@@ -29,8 +29,10 @@ class AuthenticationService implements AuthenticationServiceInterface {
   }
 
   @override
-  ApiFuture<UserModel> login(
-      {required String email, required String password}) {
+  ApiFuture<UserModel> login({
+    required String email,
+    required String password,
+  }) {
     return apiFunction(
       () async {
         final cred = await auth.signInWithEmailAndPassword(

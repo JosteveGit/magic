@@ -50,7 +50,9 @@ class AuthenticationRepository implements AuthenticationRepositoryInterface {
     );
     if (response.isLeft()) {
       Preferences.setModel(
-          key: PreferencesStrings.userModel, model: response.left);
+        key: PreferencesStrings.userModel,
+        model: response.left,
+      );
     }
     return response;
   }
