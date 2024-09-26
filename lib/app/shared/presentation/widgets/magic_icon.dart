@@ -41,12 +41,14 @@ class MagicImage extends ConsumerWidget {
   final VoidCallback? onTap;
   final Color? color;
   final Color? iconColor;
+  final double? width;
   const MagicImage({
     super.key,
     required this.image,
     this.color,
     this.onTap,
     this.iconColor,
+    this.width,
   });
 
   @override
@@ -63,7 +65,7 @@ class MagicImage extends ConsumerWidget {
         child: Image.asset(
           image,
           color: iconColor ?? colors.alwaysWhite,
-          width: 25,
+          width: width ?? 25,
         ),
       ),
     );

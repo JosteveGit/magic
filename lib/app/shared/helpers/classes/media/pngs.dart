@@ -7,4 +7,5 @@ class Pngs {
 
   static const rep = 'assets/images/rep.png';
   static const set = 'assets/images/set.png';
+  
 }

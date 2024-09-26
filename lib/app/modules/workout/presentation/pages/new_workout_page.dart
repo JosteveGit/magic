@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:magic/app/shared/presentation/widgets/custom_button.dart';
+import 'package:magic/app/modules/workout/presentation/pages/set_page.dart';
 import 'package:magic/app/modules/workout/presentation/widgets/set_item.dart';
+import 'package:magic/app/shared/presentation/widgets/custom_button.dart';
 import 'package:magic/app/shared/presentation/widgets/magic_app_bar.dart';
 import 'package:magic/app/shared/presentation/widgets/magic_icon.dart';
 import 'package:magic/core/framework/theme/colors/app_theme_provider.dart';
+import 'package:magic/core/navigation/navigator.dart';
 
 class NewWorkoutPage extends ConsumerStatefulWidget {
   const NewWorkoutPage({super.key});
@@ -25,10 +27,15 @@ class _NewWorkoutPageState extends ConsumerState<NewWorkoutPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const MagicAppBar(
+              MagicAppBar(
                 title: "New Workout",
                 trailing: [
-                  MagicIcon(icon: Icons.add_rounded),
+                  MagicIcon(
+                    icon: Icons.add_rounded,
+                    onTap: () {
+                      pushTo(context, const SetPage());
+                    },
+                  ),
                 ],
               ),
               const Expanded(
