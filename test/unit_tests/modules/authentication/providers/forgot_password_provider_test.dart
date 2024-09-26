@@ -10,54 +10,61 @@ class MockAuthenticationRepository extends Mock
     implements AuthenticationRepositoryInterface {}
 
 void main() {
-  group('ForgotPasswordNotifier', () {
-    late AuthenticationRepositoryInterface repository;
-    late ForgotPasswordNotifier forgotPasswordNotifier;
+  group(
+    'ForgotPasswordNotifier',
+    () {
+      late AuthenticationRepositoryInterface repository;
+      late ForgotPasswordNotifier forgotPasswordNotifier;
 
-    setUp(() {
-      repository = MockAuthenticationRepository();
-      forgotPasswordNotifier = ForgotPasswordNotifier(repo: repository);
-    });
+      setUp(() {
+        repository = MockAuthenticationRepository();
+        forgotPasswordNotifier = ForgotPasswordNotifier(repo: repository);
+      });
 
-    test(
+      test(
         'successful forgotPassword updates state to ForgotPasswordState.success',
         () async {
-      when(() => repository.forgotPassword(email: any(named: 'email')))
-          .thenAnswer(
-        (_) async => left(null),
+          when(() => repository.forgotPassword(email: any(named: 'email')))
+              .thenAnswer(
+            (_) async => left(null),
+          );
+
+          expectLater(
+            forgotPasswordNotifier.stream,
+            emitsInOrder([
+              const ForgotPasswordState.loading(),
+              const ForgotPasswordState.success(),
+            ]),
+          );
+
+          forgotPasswordNotifier.forgotPassword(email: 'test@example.com');
+        },
       );
 
-      expectLater(
-        forgotPasswordNotifier.stream,
-        emitsInOrder([
-          const ForgotPasswordState.loading(),
-          const ForgotPasswordState.success(),
-        ]),
-      );
-
-      forgotPasswordNotifier.forgotPassword(email: 'test@example.com');
-    });
-
-    test('forgotPassword failure updates state to ForgotPasswordState.error',
+      test(
+        'forgotPassword failure updates state to ForgotPasswordState.error',
         () async {
-      const errorMessage = 'No user found with this email address';
+          const errorMessage = 'No user found with this email address';
 
-      when(() => repository.forgotPassword(email: any(named: 'email')))
-          .thenAnswer(
-        (_) async => right(
-          const FailureResponse(errorMessage),
-        ),
+          when(() => repository.forgotPassword(email: any(named: 'email')))
+              .thenAnswer(
+            (_) async => right(
+              const FailureResponse(errorMessage),
+            ),
+          );
+
+          expectLater(
+            forgotPasswordNotifier.stream,
+            emitsInOrder([
+              const ForgotPasswordState.loading(),
+              const ForgotPasswordState.error(errorMessage),
+            ]),
+          );
+
+          forgotPasswordNotifier.forgotPassword(
+              email: 'nonexistent@example.com');
+        },
       );
-
-      expectLater(
-        forgotPasswordNotifier.stream,
-        emitsInOrder([
-          const ForgotPasswordState.loading(),
-          const ForgotPasswordState.error(errorMessage),
-        ]),
-      );
-
-      forgotPasswordNotifier.forgotPassword(email: 'nonexistent@example.com');
-    });
-  });
+    },
+  );
 }
