@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:magic/app/modules/authentication/presentation/pages/forgot_password_page.dart';
 import 'package:magic/app/modules/authentication/presentation/pages/register_page.dart';
 import 'package:magic/app/modules/authentication/presentation/providers/login/login_provider.dart';
 import 'package:magic/app/modules/authentication/presentation/providers/login/login_state.dart';
@@ -84,7 +85,9 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                       Align(
                         alignment: Alignment.centerRight,
                         child: TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            pushTo(context, const ForgotPasswordPage());
+                          },
                           style: TextButton.styleFrom(
                             foregroundColor: colors.alwaysWhite,
                           ),

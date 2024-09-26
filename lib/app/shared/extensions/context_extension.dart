@@ -4,15 +4,16 @@ extension Extras on BuildContext {
   void _showSnackBar(
     String message, {
     Color? color,
+    Color? textColor,
   }) {
     ScaffoldMessenger.of(this).showSnackBar(
       SnackBar(
         content: Text(
           message,
-          style: const TextStyle(
+          style: TextStyle(
             fontFamily: 'PlusJakartaDisplay',
             fontSize: 16,
-            color: Colors.white,
+            color: textColor ?? Colors.white,
           ),
         ),
         backgroundColor: color,
@@ -22,5 +23,13 @@ extension Extras on BuildContext {
 
   void showError(String message) {
     _showSnackBar(message, color: Colors.red);
+  }
+
+  void showSuccess(String message) {
+    _showSnackBar(
+      message,
+      color: const Color(0xffdbff54),
+      textColor: Colors.black,
+    );
   }
 }
