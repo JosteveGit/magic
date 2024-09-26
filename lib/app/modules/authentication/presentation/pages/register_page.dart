@@ -7,6 +7,8 @@ import 'package:magic/app/modules/dashboard/presentation/pages/dashboard_page.da
 import 'package:magic/app/shared/extensions/context_extension.dart';
 import 'package:magic/app/shared/functions/dialog_functions.dart';
 import 'package:magic/app/shared/functions/string_functions.dart';
+import 'package:magic/app/shared/helpers/classes/preferences/preferences.dart';
+import 'package:magic/app/shared/helpers/classes/preferences/preferences_strings.dart';
 import 'package:magic/app/shared/presentation/widgets/custom_button.dart';
 import 'package:magic/app/shared/presentation/widgets/custom_textfield.dart';
 import 'package:magic/app/shared/presentation/widgets/magic_app_bar.dart';
@@ -136,6 +138,12 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                     password: password,
                     firstName: firstName,
                     lastName: lastName,
+                    onSuccess: (userModel) {
+                      Preferences.setModel(
+                        key: PreferencesStrings.userModel,
+                        model: userModel,
+                      );
+                    },
                   );
                 },
                 validator: () {

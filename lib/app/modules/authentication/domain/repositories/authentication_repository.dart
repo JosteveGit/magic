@@ -1,11 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:magic/app/modules/authentication/data/models/user_model.dart';
 import 'package:magic/app/modules/authentication/domain/repositories/interfaces/authentication_repository_interface.dart';
 import 'package:magic/app/modules/authentication/domain/services/authentication_service.dart';
 import 'package:magic/app/modules/authentication/domain/services/interfaces/authentication_service_interface.dart';
-import 'package:magic/app/shared/extensions/dart_z_extension.dart';
 import 'package:magic/app/shared/helpers/classes/failures.dart';
-import 'package:magic/app/shared/helpers/classes/preferences/preferences.dart';
-import 'package:magic/app/shared/helpers/classes/preferences/preferences_strings.dart';
 
 final authenticationRepositoryProvider =
     Provider<AuthenticationRepositoryInterface>((ref) {
@@ -23,20 +21,16 @@ class AuthenticationRepository implements AuthenticationRepositoryInterface {
   }
 
   @override
-  ApiFuture<void> login({
+  ApiFuture<UserModel> login({
     required String email,
     required String password,
   }) async {
     final response = await service.login(email: email, password: password);
-    if (response.isLeft()) {
-      Preferences.setModel(
-          key: PreferencesStrings.userModel, model: response.left);
-    }
     return response;
   }
 
   @override
-  ApiFuture<void> register({
+  ApiFuture<UserModel> register({
     required String email,
     required String password,
     required String firstName,
@@ -48,12 +42,6 @@ class AuthenticationRepository implements AuthenticationRepositoryInterface {
       firstName: firstName,
       lastName: lastName,
     );
-    if (response.isLeft()) {
-      Preferences.setModel(
-        key: PreferencesStrings.userModel,
-        model: response.left,
-      );
-    }
     return response;
   }
 }

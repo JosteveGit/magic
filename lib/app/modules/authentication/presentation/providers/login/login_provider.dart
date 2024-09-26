@@ -1,4 +1,6 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:magic/app/modules/authentication/data/models/user_model.dart';
 import 'package:magic/app/modules/authentication/domain/repositories/authentication_repository.dart';
 import 'package:magic/app/modules/authentication/domain/repositories/interfaces/authentication_repository_interface.dart';
 import 'package:magic/app/modules/authentication/presentation/providers/login/login_state.dart';
@@ -15,6 +17,7 @@ class LoginNotifier extends StateNotifier<LoginState> {
   void login({
     required String email,
     required String password,
+    ValueChanged<UserModel>? onSuccess,
   }) async {
     state = const LoginState.loading();
     final response = await repo.login(
@@ -22,7 +25,10 @@ class LoginNotifier extends StateNotifier<LoginState> {
       password: password,
     );
     response.fold(
-      (_) => state = const LoginState.success(),
+      (userModel) {
+        state = const LoginState.success();
+        onSuccess?.call(userModel);
+      },
       (error) => state = LoginState.error(error.message),
     );
   }

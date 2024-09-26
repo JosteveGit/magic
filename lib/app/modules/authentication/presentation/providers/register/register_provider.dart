@@ -1,4 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:magic/app/modules/authentication/data/models/user_model.dart';
 import 'package:magic/app/modules/authentication/domain/repositories/authentication_repository.dart';
 import 'package:magic/app/modules/authentication/domain/repositories/interfaces/authentication_repository_interface.dart';
 import 'package:magic/app/modules/authentication/presentation/providers/register/register_state.dart';
@@ -18,6 +20,7 @@ class RegisterNotifier extends StateNotifier<RegisterState> {
     required String password,
     required String firstName,
     required String lastName,
+    ValueChanged<UserModel>? onSuccess,
   }) async {
     state = const RegisterState.loading();
     final response = await repo.register(
@@ -27,7 +30,10 @@ class RegisterNotifier extends StateNotifier<RegisterState> {
       lastName: lastName,
     );
     response.fold(
-      (_) => state = const RegisterState.success(),
+      (userModel) {
+        state = const RegisterState.success();
+        onSuccess?.call(userModel);
+      },
       (error) => state = RegisterState.error(error.message),
     );
   }
