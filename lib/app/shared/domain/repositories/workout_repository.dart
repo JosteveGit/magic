@@ -18,8 +18,8 @@ class WorkoutRepository implements WorkoutRepositoryInterface {
   WorkoutRepository({required this.service});
 
   @override
-  ApiFuture<void> createWorkout(List<SetModel> sets) {
-    final uid = getUser()!.uid;
+  ApiFuture<void> createWorkout(List<SetModel> sets, [String? uid]) {
+    uid ??= getUser()!.uid;
     return service.createWorkout(sets, uid);
   }
 
@@ -37,8 +37,8 @@ class WorkoutRepository implements WorkoutRepositoryInterface {
   }
 
   @override
-  ApiStream<List<WorkoutModel>> streamWorkouts() {
-    final uid = getUser()!.uid;
+  ApiStream<List<WorkoutModel>> streamWorkouts([String? uid]) {
+    uid ??= getUser()!.uid;
     return service.streamWorkouts(uid);
   }
 }
