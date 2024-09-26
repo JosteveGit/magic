@@ -75,7 +75,7 @@ class _DashboardPageState extends ConsumerState<DashboardPage> {
                 width: double.maxFinite,
                 color: colors.primary,
                 padding: EdgeInsets.only(
-                  top: topMargin,
+                  top: topMargin + 20,
                   left: 20,
                   right: 20,
                 ),

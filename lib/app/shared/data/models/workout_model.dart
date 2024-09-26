@@ -8,12 +8,13 @@ class WorkoutModel {
   final Timestamp date;
 
   double get totalWeight {
-    return sets.fold(0.0, (previousValue, element) => previousValue + element.weight);
+    return sets.fold(
+        0.0, (previousValue, element) => previousValue + element.weight);
   }
 
   int get totalSets => sets.length;
 
-  String get formattedDate{
+  String get formattedDate {
     return formatDate(date.toDate());
   }
 
@@ -31,7 +32,9 @@ class WorkoutModel {
     return WorkoutModel(
       sets: (json['sets'] as List).map((e) => SetModel.fromJson(e)).toList(),
       id: id,
-      date: (json['created_at'] as Timestamp),
+      date: json['created_at'] == null
+          ? Timestamp.now()
+          : (json['created_at'] as Timestamp),
     );
   }
 }
