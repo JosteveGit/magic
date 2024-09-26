@@ -4,7 +4,7 @@ import 'package:magic/app/shared/helpers/classes/failures.dart';
 
 abstract interface class WorkoutRepositoryInterface {
   ApiFuture<void> createWorkout(List<SetModel> sets);
-  ApiFuture<void> editWorkout({
+  ApiFuture<void> updateWorkout({
     required List<SetModel> sets,
     required String workoutId,
   });

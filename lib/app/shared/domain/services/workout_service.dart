@@ -39,7 +39,7 @@ class WorkoutService implements WorkoutServiceInterface {
   }
 
   @override
-  ApiFuture<void> editWorkout({
+  ApiFuture<void> updateWorkout({
     required List<SetModel> sets,
     required String workoutId,
   }) {

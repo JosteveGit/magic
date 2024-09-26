@@ -29,11 +29,11 @@ class WorkoutRepository implements WorkoutRepositoryInterface {
   }
 
   @override
-  ApiFuture<void> editWorkout({
+  ApiFuture<void> updateWorkout({
     required List<SetModel> sets,
     required String workoutId,
   }) {
-    return service.editWorkout(sets: sets, workoutId: workoutId);
+    return service.updateWorkout(sets: sets, workoutId: workoutId);
   }
 
   @override

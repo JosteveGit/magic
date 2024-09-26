@@ -1,11 +1,12 @@
+import 'package:equatable/equatable.dart';
 import 'package:magic/app/shared/functions/string_functions.dart';
 
-class SetModel {
+class SetModel extends Equatable {
   final SetType setType;
   final double weight;
   final int repetitions;
 
-  SetModel({
+  const SetModel({
     required this.setType,
     required this.weight,
     required this.repetitions,
@@ -28,6 +29,9 @@ class SetModel {
   }
 
   String get typeName => capitalize(setType.cleanName);
+
+  @override
+  List<Object?> get props => [setType, weight, repetitions];
 }
 
 enum SetType {

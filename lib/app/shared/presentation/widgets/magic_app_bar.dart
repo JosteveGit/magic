@@ -30,7 +30,7 @@ class MagicAppBar extends ConsumerWidget {
               child: Text(
                 title,
                 style: TextStyle(
-                  fontSize: 24,
+                  fontSize: 20,
                   fontWeight: FontWeight.w500,
                   color: colors.alwaysWhite,
                 ),

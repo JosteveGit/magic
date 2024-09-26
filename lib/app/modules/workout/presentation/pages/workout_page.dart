@@ -4,6 +4,8 @@ import 'package:magic/app/modules/workout/data/models/set_model.dart';
 import 'package:magic/app/modules/workout/presentation/pages/set_page.dart';
 import 'package:magic/app/modules/workout/presentation/providers/add_workout/create_work_provider.dart';
 import 'package:magic/app/modules/workout/presentation/providers/add_workout/create_work_state.dart';
+import 'package:magic/app/modules/workout/presentation/providers/update_workout/update_work_provider.dart';
+import 'package:magic/app/modules/workout/presentation/providers/update_workout/update_workout_state.dart';
 import 'package:magic/app/modules/workout/presentation/widgets/set_item.dart';
 import 'package:magic/app/shared/data/models/workout_model.dart';
 import 'package:magic/app/shared/extensions/context_extension.dart';
@@ -55,6 +57,24 @@ class _WorkoutPageState extends ConsumerState<WorkoutPage> {
         }
       },
     );
+    ref.listen(
+      updateWorkoutProvider,
+      (prev, next) {
+        if (next is UpdateWorkoutStateLoading) {
+          showLoadingDialog(context);
+        }
+        if (next is UpdateWorkoutStateSuccess) {
+          pop(context);
+          pop(context);
+          context.showSuccess("Workout updated successfully");
+        }
+        if (next is UpdateWorkoutStateError) {
+          pop(context);
+          context.showError(next.message);
+        }
+      },
+    );
+    final isUpdate = widget.workout != null;
     return Scaffold(
       backgroundColor: colors.alwaysBlack,
       body: SafeArea(
@@ -64,7 +84,7 @@ class _WorkoutPageState extends ConsumerState<WorkoutPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               MagicAppBar(
-                title: "New Workout",
+                title: isUpdate ? widget.workout!.formattedDate : "New Workout",
                 trailing: [
                   MagicIcon(
                     icon: Icons.add_rounded,
@@ -159,17 +179,39 @@ class _WorkoutPageState extends ConsumerState<WorkoutPage> {
                 }),
               ),
               CustomButton(
-                text: "Save",
+                text: isUpdate ? "Update" : "Save",
                 onPressed: () {
-                  if (widget.workout == null) {
+                  if (!isUpdate) {
                     final createNotifier = ref.read(
                       createWorkoutProvider.notifier,
                     );
                     createNotifier.createWorkout(sets);
+                    return;
                   }
+                  final updateNotifier = ref.read(
+                    updateWorkoutProvider.notifier,
+                  );
+                  updateNotifier.updateWorkout(
+                    sets: sets,
+                    id: widget.workout!.id,
+                  );
                 },
                 validator: () {
-                  return sets.isNotEmpty;
+                  if (sets.isEmpty) {
+                    return false;
+                  }
+                  if (isUpdate) {
+                    final oldSets = widget.workout!.sets;
+                    if (sets.length == oldSets.length) {
+                      for (var i = 0; i < sets.length; i++) {
+                        if (sets[i] != oldSets[i]) {
+                          return true;
+                        }
+                      }
+                      return false;
+                    }
+                  }
+                  return true;
                 },
               ),
             ],

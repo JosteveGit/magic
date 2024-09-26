@@ -494,7 +494,8 @@ abstract class GetWorkoutsStateSuccess implements GetWorkoutsState {
 
 /// @nodoc
 abstract class _$$GetWorkoutsStateErrorImplCopyWith<$Res> {
-  factory _$$GetWorkoutsStateErrorImplCopyWith(_$GetWorkoutsStateErrorImpl value,
+  factory _$$GetWorkoutsStateErrorImplCopyWith(
+          _$GetWorkoutsStateErrorImpl value,
           $Res Function(_$GetWorkoutsStateErrorImpl) then) =
       __$$GetWorkoutsStateErrorImplCopyWithImpl<$Res>;
   @useResult
@@ -555,9 +556,8 @@ class _$GetWorkoutsStateErrorImpl implements GetWorkoutsStateError {
   @override
   @pragma('vm:prefer-inline')
   _$$GetWorkoutsStateErrorImplCopyWith<_$GetWorkoutsStateErrorImpl>
-      get copyWith =>
-          __$$GetWorkoutsStateErrorImplCopyWithImpl<_$GetWorkoutsStateErrorImpl>(
-              this, _$identity);
+      get copyWith => __$$GetWorkoutsStateErrorImplCopyWithImpl<
+          _$GetWorkoutsStateErrorImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs

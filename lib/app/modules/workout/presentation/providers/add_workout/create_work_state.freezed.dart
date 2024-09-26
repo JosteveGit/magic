@@ -99,7 +99,8 @@ abstract class _$$CreateWorkoutStateInitialImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$CreateWorkoutStateInitialImplCopyWithImpl<$Res>
-    extends _$CreateWorkoutStateCopyWithImpl<$Res, _$CreateWorkoutStateInitialImpl>
+    extends _$CreateWorkoutStateCopyWithImpl<$Res,
+        _$CreateWorkoutStateInitialImpl>
     implements _$$CreateWorkoutStateInitialImplCopyWith<$Res> {
   __$$CreateWorkoutStateInitialImplCopyWithImpl(
       _$CreateWorkoutStateInitialImpl _value,
@@ -219,7 +220,8 @@ abstract class _$$CreateWorkoutStateLoadingImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$CreateWorkoutStateLoadingImplCopyWithImpl<$Res>
-    extends _$CreateWorkoutStateCopyWithImpl<$Res, _$CreateWorkoutStateLoadingImpl>
+    extends _$CreateWorkoutStateCopyWithImpl<$Res,
+        _$CreateWorkoutStateLoadingImpl>
     implements _$$CreateWorkoutStateLoadingImplCopyWith<$Res> {
   __$$CreateWorkoutStateLoadingImplCopyWithImpl(
       _$CreateWorkoutStateLoadingImpl _value,
@@ -339,7 +341,8 @@ abstract class _$$CreateWorkoutStateSuccessImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$CreateWorkoutStateSuccessImplCopyWithImpl<$Res>
-    extends _$CreateWorkoutStateCopyWithImpl<$Res, _$CreateWorkoutStateSuccessImpl>
+    extends _$CreateWorkoutStateCopyWithImpl<$Res,
+        _$CreateWorkoutStateSuccessImpl>
     implements _$$CreateWorkoutStateSuccessImplCopyWith<$Res> {
   __$$CreateWorkoutStateSuccessImplCopyWithImpl(
       _$CreateWorkoutStateSuccessImpl _value,
@@ -451,7 +454,8 @@ abstract class CreateWorkoutStateSuccess implements CreateWorkoutState {
 
 /// @nodoc
 abstract class _$$CreateWorkoutStateErrorImplCopyWith<$Res> {
-  factory _$$CreateWorkoutStateErrorImplCopyWith(_$CreateWorkoutStateErrorImpl value,
+  factory _$$CreateWorkoutStateErrorImplCopyWith(
+          _$CreateWorkoutStateErrorImpl value,
           $Res Function(_$CreateWorkoutStateErrorImpl) then) =
       __$$CreateWorkoutStateErrorImplCopyWithImpl<$Res>;
   @useResult
@@ -460,9 +464,11 @@ abstract class _$$CreateWorkoutStateErrorImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$CreateWorkoutStateErrorImplCopyWithImpl<$Res>
-    extends _$CreateWorkoutStateCopyWithImpl<$Res, _$CreateWorkoutStateErrorImpl>
+    extends _$CreateWorkoutStateCopyWithImpl<$Res,
+        _$CreateWorkoutStateErrorImpl>
     implements _$$CreateWorkoutStateErrorImplCopyWith<$Res> {
-  __$$CreateWorkoutStateErrorImplCopyWithImpl(_$CreateWorkoutStateErrorImpl _value,
+  __$$CreateWorkoutStateErrorImplCopyWithImpl(
+      _$CreateWorkoutStateErrorImpl _value,
       $Res Function(_$CreateWorkoutStateErrorImpl) _then)
       : super(_value, _then);
 
@@ -512,9 +518,8 @@ class _$CreateWorkoutStateErrorImpl implements CreateWorkoutStateError {
   @override
   @pragma('vm:prefer-inline')
   _$$CreateWorkoutStateErrorImplCopyWith<_$CreateWorkoutStateErrorImpl>
-      get copyWith =>
-          __$$CreateWorkoutStateErrorImplCopyWithImpl<_$CreateWorkoutStateErrorImpl>(
-              this, _$identity);
+      get copyWith => __$$CreateWorkoutStateErrorImplCopyWithImpl<
+          _$CreateWorkoutStateErrorImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs

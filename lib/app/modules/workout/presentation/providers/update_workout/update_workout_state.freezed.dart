@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'edit_workout_state.dart';
+part of 'update_workout_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$EditWorkoutState {
+mixin _$UpdateWorkoutState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
@@ -43,88 +43,89 @@ mixin _$EditWorkoutState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(EditWorkoutStateInitial value) initial,
-    required TResult Function(EditWorkoutStateLoading value) loading,
-    required TResult Function(EditWorkoutStateSuccess value) success,
-    required TResult Function(EditWorkoutStateError value) error,
+    required TResult Function(UpdateWorkoutStateInitial value) initial,
+    required TResult Function(UpdateWorkoutStateLoading value) loading,
+    required TResult Function(UpdateWorkoutStateSuccess value) success,
+    required TResult Function(UpdateWorkoutStateError value) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(EditWorkoutStateInitial value)? initial,
-    TResult? Function(EditWorkoutStateLoading value)? loading,
-    TResult? Function(EditWorkoutStateSuccess value)? success,
-    TResult? Function(EditWorkoutStateError value)? error,
+    TResult? Function(UpdateWorkoutStateInitial value)? initial,
+    TResult? Function(UpdateWorkoutStateLoading value)? loading,
+    TResult? Function(UpdateWorkoutStateSuccess value)? success,
+    TResult? Function(UpdateWorkoutStateError value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(EditWorkoutStateInitial value)? initial,
-    TResult Function(EditWorkoutStateLoading value)? loading,
-    TResult Function(EditWorkoutStateSuccess value)? success,
-    TResult Function(EditWorkoutStateError value)? error,
+    TResult Function(UpdateWorkoutStateInitial value)? initial,
+    TResult Function(UpdateWorkoutStateLoading value)? loading,
+    TResult Function(UpdateWorkoutStateSuccess value)? success,
+    TResult Function(UpdateWorkoutStateError value)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $EditWorkoutStateCopyWith<$Res> {
-  factory $EditWorkoutStateCopyWith(
-          EditWorkoutState value, $Res Function(EditWorkoutState) then) =
-      _$EditWorkoutStateCopyWithImpl<$Res, EditWorkoutState>;
+abstract class $UpdateWorkoutStateCopyWith<$Res> {
+  factory $UpdateWorkoutStateCopyWith(
+          UpdateWorkoutState value, $Res Function(UpdateWorkoutState) then) =
+      _$UpdateWorkoutStateCopyWithImpl<$Res, UpdateWorkoutState>;
 }
 
 /// @nodoc
-class _$EditWorkoutStateCopyWithImpl<$Res, $Val extends EditWorkoutState>
-    implements $EditWorkoutStateCopyWith<$Res> {
-  _$EditWorkoutStateCopyWithImpl(this._value, this._then);
+class _$UpdateWorkoutStateCopyWithImpl<$Res, $Val extends UpdateWorkoutState>
+    implements $UpdateWorkoutStateCopyWith<$Res> {
+  _$UpdateWorkoutStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of EditWorkoutState
+  /// Create a copy of UpdateWorkoutState
   /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
-abstract class _$$EditWorkoutStateInitialImplCopyWith<$Res> {
-  factory _$$EditWorkoutStateInitialImplCopyWith(
-          _$EditWorkoutStateInitialImpl value,
-          $Res Function(_$EditWorkoutStateInitialImpl) then) =
-      __$$EditWorkoutStateInitialImplCopyWithImpl<$Res>;
+abstract class _$$UpdateWorkoutStateInitialImplCopyWith<$Res> {
+  factory _$$UpdateWorkoutStateInitialImplCopyWith(
+          _$UpdateWorkoutStateInitialImpl value,
+          $Res Function(_$UpdateWorkoutStateInitialImpl) then) =
+      __$$UpdateWorkoutStateInitialImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$EditWorkoutStateInitialImplCopyWithImpl<$Res>
-    extends _$EditWorkoutStateCopyWithImpl<$Res, _$EditWorkoutStateInitialImpl>
-    implements _$$EditWorkoutStateInitialImplCopyWith<$Res> {
-  __$$EditWorkoutStateInitialImplCopyWithImpl(
-      _$EditWorkoutStateInitialImpl _value,
-      $Res Function(_$EditWorkoutStateInitialImpl) _then)
+class __$$UpdateWorkoutStateInitialImplCopyWithImpl<$Res>
+    extends _$UpdateWorkoutStateCopyWithImpl<$Res,
+        _$UpdateWorkoutStateInitialImpl>
+    implements _$$UpdateWorkoutStateInitialImplCopyWith<$Res> {
+  __$$UpdateWorkoutStateInitialImplCopyWithImpl(
+      _$UpdateWorkoutStateInitialImpl _value,
+      $Res Function(_$UpdateWorkoutStateInitialImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of EditWorkoutState
+  /// Create a copy of UpdateWorkoutState
   /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$EditWorkoutStateInitialImpl implements EditWorkoutStateInitial {
-  const _$EditWorkoutStateInitialImpl();
+class _$UpdateWorkoutStateInitialImpl implements UpdateWorkoutStateInitial {
+  const _$UpdateWorkoutStateInitialImpl();
 
   @override
   String toString() {
-    return 'EditWorkoutState.initial()';
+    return 'UpdateWorkoutState.initial()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$EditWorkoutStateInitialImpl);
+            other is _$UpdateWorkoutStateInitialImpl);
   }
 
   @override
@@ -170,10 +171,10 @@ class _$EditWorkoutStateInitialImpl implements EditWorkoutStateInitial {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(EditWorkoutStateInitial value) initial,
-    required TResult Function(EditWorkoutStateLoading value) loading,
-    required TResult Function(EditWorkoutStateSuccess value) success,
-    required TResult Function(EditWorkoutStateError value) error,
+    required TResult Function(UpdateWorkoutStateInitial value) initial,
+    required TResult Function(UpdateWorkoutStateLoading value) loading,
+    required TResult Function(UpdateWorkoutStateSuccess value) success,
+    required TResult Function(UpdateWorkoutStateError value) error,
   }) {
     return initial(this);
   }
@@ -181,10 +182,10 @@ class _$EditWorkoutStateInitialImpl implements EditWorkoutStateInitial {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(EditWorkoutStateInitial value)? initial,
-    TResult? Function(EditWorkoutStateLoading value)? loading,
-    TResult? Function(EditWorkoutStateSuccess value)? success,
-    TResult? Function(EditWorkoutStateError value)? error,
+    TResult? Function(UpdateWorkoutStateInitial value)? initial,
+    TResult? Function(UpdateWorkoutStateLoading value)? loading,
+    TResult? Function(UpdateWorkoutStateSuccess value)? success,
+    TResult? Function(UpdateWorkoutStateError value)? error,
   }) {
     return initial?.call(this);
   }
@@ -192,10 +193,10 @@ class _$EditWorkoutStateInitialImpl implements EditWorkoutStateInitial {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(EditWorkoutStateInitial value)? initial,
-    TResult Function(EditWorkoutStateLoading value)? loading,
-    TResult Function(EditWorkoutStateSuccess value)? success,
-    TResult Function(EditWorkoutStateError value)? error,
+    TResult Function(UpdateWorkoutStateInitial value)? initial,
+    TResult Function(UpdateWorkoutStateLoading value)? loading,
+    TResult Function(UpdateWorkoutStateSuccess value)? success,
+    TResult Function(UpdateWorkoutStateError value)? error,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -205,46 +206,47 @@ class _$EditWorkoutStateInitialImpl implements EditWorkoutStateInitial {
   }
 }
 
-abstract class EditWorkoutStateInitial implements EditWorkoutState {
-  const factory EditWorkoutStateInitial() = _$EditWorkoutStateInitialImpl;
+abstract class UpdateWorkoutStateInitial implements UpdateWorkoutState {
+  const factory UpdateWorkoutStateInitial() = _$UpdateWorkoutStateInitialImpl;
 }
 
 /// @nodoc
-abstract class _$$EditWorkoutStateLoadingImplCopyWith<$Res> {
-  factory _$$EditWorkoutStateLoadingImplCopyWith(
-          _$EditWorkoutStateLoadingImpl value,
-          $Res Function(_$EditWorkoutStateLoadingImpl) then) =
-      __$$EditWorkoutStateLoadingImplCopyWithImpl<$Res>;
+abstract class _$$UpdateWorkoutStateLoadingImplCopyWith<$Res> {
+  factory _$$UpdateWorkoutStateLoadingImplCopyWith(
+          _$UpdateWorkoutStateLoadingImpl value,
+          $Res Function(_$UpdateWorkoutStateLoadingImpl) then) =
+      __$$UpdateWorkoutStateLoadingImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$EditWorkoutStateLoadingImplCopyWithImpl<$Res>
-    extends _$EditWorkoutStateCopyWithImpl<$Res, _$EditWorkoutStateLoadingImpl>
-    implements _$$EditWorkoutStateLoadingImplCopyWith<$Res> {
-  __$$EditWorkoutStateLoadingImplCopyWithImpl(
-      _$EditWorkoutStateLoadingImpl _value,
-      $Res Function(_$EditWorkoutStateLoadingImpl) _then)
+class __$$UpdateWorkoutStateLoadingImplCopyWithImpl<$Res>
+    extends _$UpdateWorkoutStateCopyWithImpl<$Res,
+        _$UpdateWorkoutStateLoadingImpl>
+    implements _$$UpdateWorkoutStateLoadingImplCopyWith<$Res> {
+  __$$UpdateWorkoutStateLoadingImplCopyWithImpl(
+      _$UpdateWorkoutStateLoadingImpl _value,
+      $Res Function(_$UpdateWorkoutStateLoadingImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of EditWorkoutState
+  /// Create a copy of UpdateWorkoutState
   /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$EditWorkoutStateLoadingImpl implements EditWorkoutStateLoading {
-  const _$EditWorkoutStateLoadingImpl();
+class _$UpdateWorkoutStateLoadingImpl implements UpdateWorkoutStateLoading {
+  const _$UpdateWorkoutStateLoadingImpl();
 
   @override
   String toString() {
-    return 'EditWorkoutState.loading()';
+    return 'UpdateWorkoutState.loading()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$EditWorkoutStateLoadingImpl);
+            other is _$UpdateWorkoutStateLoadingImpl);
   }
 
   @override
@@ -290,10 +292,10 @@ class _$EditWorkoutStateLoadingImpl implements EditWorkoutStateLoading {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(EditWorkoutStateInitial value) initial,
-    required TResult Function(EditWorkoutStateLoading value) loading,
-    required TResult Function(EditWorkoutStateSuccess value) success,
-    required TResult Function(EditWorkoutStateError value) error,
+    required TResult Function(UpdateWorkoutStateInitial value) initial,
+    required TResult Function(UpdateWorkoutStateLoading value) loading,
+    required TResult Function(UpdateWorkoutStateSuccess value) success,
+    required TResult Function(UpdateWorkoutStateError value) error,
   }) {
     return loading(this);
   }
@@ -301,10 +303,10 @@ class _$EditWorkoutStateLoadingImpl implements EditWorkoutStateLoading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(EditWorkoutStateInitial value)? initial,
-    TResult? Function(EditWorkoutStateLoading value)? loading,
-    TResult? Function(EditWorkoutStateSuccess value)? success,
-    TResult? Function(EditWorkoutStateError value)? error,
+    TResult? Function(UpdateWorkoutStateInitial value)? initial,
+    TResult? Function(UpdateWorkoutStateLoading value)? loading,
+    TResult? Function(UpdateWorkoutStateSuccess value)? success,
+    TResult? Function(UpdateWorkoutStateError value)? error,
   }) {
     return loading?.call(this);
   }
@@ -312,10 +314,10 @@ class _$EditWorkoutStateLoadingImpl implements EditWorkoutStateLoading {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(EditWorkoutStateInitial value)? initial,
-    TResult Function(EditWorkoutStateLoading value)? loading,
-    TResult Function(EditWorkoutStateSuccess value)? success,
-    TResult Function(EditWorkoutStateError value)? error,
+    TResult Function(UpdateWorkoutStateInitial value)? initial,
+    TResult Function(UpdateWorkoutStateLoading value)? loading,
+    TResult Function(UpdateWorkoutStateSuccess value)? success,
+    TResult Function(UpdateWorkoutStateError value)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -325,46 +327,47 @@ class _$EditWorkoutStateLoadingImpl implements EditWorkoutStateLoading {
   }
 }
 
-abstract class EditWorkoutStateLoading implements EditWorkoutState {
-  const factory EditWorkoutStateLoading() = _$EditWorkoutStateLoadingImpl;
+abstract class UpdateWorkoutStateLoading implements UpdateWorkoutState {
+  const factory UpdateWorkoutStateLoading() = _$UpdateWorkoutStateLoadingImpl;
 }
 
 /// @nodoc
-abstract class _$$EditWorkoutStateSuccessImplCopyWith<$Res> {
-  factory _$$EditWorkoutStateSuccessImplCopyWith(
-          _$EditWorkoutStateSuccessImpl value,
-          $Res Function(_$EditWorkoutStateSuccessImpl) then) =
-      __$$EditWorkoutStateSuccessImplCopyWithImpl<$Res>;
+abstract class _$$UpdateWorkoutStateSuccessImplCopyWith<$Res> {
+  factory _$$UpdateWorkoutStateSuccessImplCopyWith(
+          _$UpdateWorkoutStateSuccessImpl value,
+          $Res Function(_$UpdateWorkoutStateSuccessImpl) then) =
+      __$$UpdateWorkoutStateSuccessImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$EditWorkoutStateSuccessImplCopyWithImpl<$Res>
-    extends _$EditWorkoutStateCopyWithImpl<$Res, _$EditWorkoutStateSuccessImpl>
-    implements _$$EditWorkoutStateSuccessImplCopyWith<$Res> {
-  __$$EditWorkoutStateSuccessImplCopyWithImpl(
-      _$EditWorkoutStateSuccessImpl _value,
-      $Res Function(_$EditWorkoutStateSuccessImpl) _then)
+class __$$UpdateWorkoutStateSuccessImplCopyWithImpl<$Res>
+    extends _$UpdateWorkoutStateCopyWithImpl<$Res,
+        _$UpdateWorkoutStateSuccessImpl>
+    implements _$$UpdateWorkoutStateSuccessImplCopyWith<$Res> {
+  __$$UpdateWorkoutStateSuccessImplCopyWithImpl(
+      _$UpdateWorkoutStateSuccessImpl _value,
+      $Res Function(_$UpdateWorkoutStateSuccessImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of EditWorkoutState
+  /// Create a copy of UpdateWorkoutState
   /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$EditWorkoutStateSuccessImpl implements EditWorkoutStateSuccess {
-  const _$EditWorkoutStateSuccessImpl();
+class _$UpdateWorkoutStateSuccessImpl implements UpdateWorkoutStateSuccess {
+  const _$UpdateWorkoutStateSuccessImpl();
 
   @override
   String toString() {
-    return 'EditWorkoutState.success()';
+    return 'UpdateWorkoutState.success()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$EditWorkoutStateSuccessImpl);
+            other is _$UpdateWorkoutStateSuccessImpl);
   }
 
   @override
@@ -410,10 +413,10 @@ class _$EditWorkoutStateSuccessImpl implements EditWorkoutStateSuccess {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(EditWorkoutStateInitial value) initial,
-    required TResult Function(EditWorkoutStateLoading value) loading,
-    required TResult Function(EditWorkoutStateSuccess value) success,
-    required TResult Function(EditWorkoutStateError value) error,
+    required TResult Function(UpdateWorkoutStateInitial value) initial,
+    required TResult Function(UpdateWorkoutStateLoading value) loading,
+    required TResult Function(UpdateWorkoutStateSuccess value) success,
+    required TResult Function(UpdateWorkoutStateError value) error,
   }) {
     return success(this);
   }
@@ -421,10 +424,10 @@ class _$EditWorkoutStateSuccessImpl implements EditWorkoutStateSuccess {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(EditWorkoutStateInitial value)? initial,
-    TResult? Function(EditWorkoutStateLoading value)? loading,
-    TResult? Function(EditWorkoutStateSuccess value)? success,
-    TResult? Function(EditWorkoutStateError value)? error,
+    TResult? Function(UpdateWorkoutStateInitial value)? initial,
+    TResult? Function(UpdateWorkoutStateLoading value)? loading,
+    TResult? Function(UpdateWorkoutStateSuccess value)? success,
+    TResult? Function(UpdateWorkoutStateError value)? error,
   }) {
     return success?.call(this);
   }
@@ -432,10 +435,10 @@ class _$EditWorkoutStateSuccessImpl implements EditWorkoutStateSuccess {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(EditWorkoutStateInitial value)? initial,
-    TResult Function(EditWorkoutStateLoading value)? loading,
-    TResult Function(EditWorkoutStateSuccess value)? success,
-    TResult Function(EditWorkoutStateError value)? error,
+    TResult Function(UpdateWorkoutStateInitial value)? initial,
+    TResult Function(UpdateWorkoutStateLoading value)? loading,
+    TResult Function(UpdateWorkoutStateSuccess value)? success,
+    TResult Function(UpdateWorkoutStateError value)? error,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -445,36 +448,38 @@ class _$EditWorkoutStateSuccessImpl implements EditWorkoutStateSuccess {
   }
 }
 
-abstract class EditWorkoutStateSuccess implements EditWorkoutState {
-  const factory EditWorkoutStateSuccess() = _$EditWorkoutStateSuccessImpl;
+abstract class UpdateWorkoutStateSuccess implements UpdateWorkoutState {
+  const factory UpdateWorkoutStateSuccess() = _$UpdateWorkoutStateSuccessImpl;
 }
 
 /// @nodoc
-abstract class _$$EditWorkoutStateErrorImplCopyWith<$Res> {
-  factory _$$EditWorkoutStateErrorImplCopyWith(
-          _$EditWorkoutStateErrorImpl value,
-          $Res Function(_$EditWorkoutStateErrorImpl) then) =
-      __$$EditWorkoutStateErrorImplCopyWithImpl<$Res>;
+abstract class _$$UpdateWorkoutStateErrorImplCopyWith<$Res> {
+  factory _$$UpdateWorkoutStateErrorImplCopyWith(
+          _$UpdateWorkoutStateErrorImpl value,
+          $Res Function(_$UpdateWorkoutStateErrorImpl) then) =
+      __$$UpdateWorkoutStateErrorImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String message});
 }
 
 /// @nodoc
-class __$$EditWorkoutStateErrorImplCopyWithImpl<$Res>
-    extends _$EditWorkoutStateCopyWithImpl<$Res, _$EditWorkoutStateErrorImpl>
-    implements _$$EditWorkoutStateErrorImplCopyWith<$Res> {
-  __$$EditWorkoutStateErrorImplCopyWithImpl(_$EditWorkoutStateErrorImpl _value,
-      $Res Function(_$EditWorkoutStateErrorImpl) _then)
+class __$$UpdateWorkoutStateErrorImplCopyWithImpl<$Res>
+    extends _$UpdateWorkoutStateCopyWithImpl<$Res,
+        _$UpdateWorkoutStateErrorImpl>
+    implements _$$UpdateWorkoutStateErrorImplCopyWith<$Res> {
+  __$$UpdateWorkoutStateErrorImplCopyWithImpl(
+      _$UpdateWorkoutStateErrorImpl _value,
+      $Res Function(_$UpdateWorkoutStateErrorImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of EditWorkoutState
+  /// Create a copy of UpdateWorkoutState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? message = null,
   }) {
-    return _then(_$EditWorkoutStateErrorImpl(
+    return _then(_$UpdateWorkoutStateErrorImpl(
       null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -485,36 +490,36 @@ class __$$EditWorkoutStateErrorImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$EditWorkoutStateErrorImpl implements EditWorkoutStateError {
-  const _$EditWorkoutStateErrorImpl(this.message);
+class _$UpdateWorkoutStateErrorImpl implements UpdateWorkoutStateError {
+  const _$UpdateWorkoutStateErrorImpl(this.message);
 
   @override
   final String message;
 
   @override
   String toString() {
-    return 'EditWorkoutState.error(message: $message)';
+    return 'UpdateWorkoutState.error(message: $message)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$EditWorkoutStateErrorImpl &&
+            other is _$UpdateWorkoutStateErrorImpl &&
             (identical(other.message, message) || other.message == message));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, message);
 
-  /// Create a copy of EditWorkoutState
+  /// Create a copy of UpdateWorkoutState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$EditWorkoutStateErrorImplCopyWith<_$EditWorkoutStateErrorImpl>
-      get copyWith => __$$EditWorkoutStateErrorImplCopyWithImpl<
-          _$EditWorkoutStateErrorImpl>(this, _$identity);
+  _$$UpdateWorkoutStateErrorImplCopyWith<_$UpdateWorkoutStateErrorImpl>
+      get copyWith => __$$UpdateWorkoutStateErrorImplCopyWithImpl<
+          _$UpdateWorkoutStateErrorImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -556,10 +561,10 @@ class _$EditWorkoutStateErrorImpl implements EditWorkoutStateError {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(EditWorkoutStateInitial value) initial,
-    required TResult Function(EditWorkoutStateLoading value) loading,
-    required TResult Function(EditWorkoutStateSuccess value) success,
-    required TResult Function(EditWorkoutStateError value) error,
+    required TResult Function(UpdateWorkoutStateInitial value) initial,
+    required TResult Function(UpdateWorkoutStateLoading value) loading,
+    required TResult Function(UpdateWorkoutStateSuccess value) success,
+    required TResult Function(UpdateWorkoutStateError value) error,
   }) {
     return error(this);
   }
@@ -567,10 +572,10 @@ class _$EditWorkoutStateErrorImpl implements EditWorkoutStateError {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(EditWorkoutStateInitial value)? initial,
-    TResult? Function(EditWorkoutStateLoading value)? loading,
-    TResult? Function(EditWorkoutStateSuccess value)? success,
-    TResult? Function(EditWorkoutStateError value)? error,
+    TResult? Function(UpdateWorkoutStateInitial value)? initial,
+    TResult? Function(UpdateWorkoutStateLoading value)? loading,
+    TResult? Function(UpdateWorkoutStateSuccess value)? success,
+    TResult? Function(UpdateWorkoutStateError value)? error,
   }) {
     return error?.call(this);
   }
@@ -578,10 +583,10 @@ class _$EditWorkoutStateErrorImpl implements EditWorkoutStateError {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(EditWorkoutStateInitial value)? initial,
-    TResult Function(EditWorkoutStateLoading value)? loading,
-    TResult Function(EditWorkoutStateSuccess value)? success,
-    TResult Function(EditWorkoutStateError value)? error,
+    TResult Function(UpdateWorkoutStateInitial value)? initial,
+    TResult Function(UpdateWorkoutStateLoading value)? loading,
+    TResult Function(UpdateWorkoutStateSuccess value)? success,
+    TResult Function(UpdateWorkoutStateError value)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -591,15 +596,15 @@ class _$EditWorkoutStateErrorImpl implements EditWorkoutStateError {
   }
 }
 
-abstract class EditWorkoutStateError implements EditWorkoutState {
-  const factory EditWorkoutStateError(final String message) =
-      _$EditWorkoutStateErrorImpl;
+abstract class UpdateWorkoutStateError implements UpdateWorkoutState {
+  const factory UpdateWorkoutStateError(final String message) =
+      _$UpdateWorkoutStateErrorImpl;
 
   String get message;
 
-  /// Create a copy of EditWorkoutState
+  /// Create a copy of UpdateWorkoutState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$EditWorkoutStateErrorImplCopyWith<_$EditWorkoutStateErrorImpl>
+  _$$UpdateWorkoutStateErrorImplCopyWith<_$UpdateWorkoutStateErrorImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
