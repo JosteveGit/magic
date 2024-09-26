@@ -49,7 +49,6 @@ app/
 │   │   │   │   ├── forgot_password/                               # State management for forgot password
 │   │   │   │   ├── login/                                         # State management for login
 │   │   │   │   └── register/                                      # State management for registration
-│   │   │   └── login_state.freezed.dart                           # Immutable state for login
 │   ├── dashboard/                                                 # Dashboard of the application
 │   ├── profile/                                                   # User profile related components
 │   └── workout/                                                   # Workout related components
