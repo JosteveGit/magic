@@ -88,6 +88,7 @@ class _WorkoutPageState extends ConsumerState<WorkoutPage> {
                 trailing: [
                   MagicIcon(
                     icon: Icons.add_rounded,
+                    key: const Key("addSetButton"),
                     onTap: () {
                       final page = SetPage(
                         onSave: (set) {
@@ -180,6 +181,7 @@ class _WorkoutPageState extends ConsumerState<WorkoutPage> {
               ),
               CustomButton(
                 text: isUpdate ? "Update" : "Save",
+                key: const Key("saveWorkoutButton"),
                 onPressed: () {
                   if (!isUpdate) {
                     final createNotifier = ref.read(

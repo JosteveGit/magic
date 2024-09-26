@@ -64,6 +64,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                       const SizedBox(height: 24),
                       CustomTextField(
                         headerText: "Email",
+                        key: const Key("email"),
                         keyboardType: TextInputType.emailAddress,
                         onChanged: (value) {
                           email = value;
@@ -79,6 +80,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                       CustomTextField(
                         headerText: "Password",
                         isPassword: true,
+                        key: const Key("password"),
                         onChanged: (value) {
                           password = value;
                           setState(() {});
@@ -102,6 +104,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
               ),
               CustomButton(
                 text: "Login",
+                key: const Key("loginButton"),
                 onPressed: () {
                   final notifier = ref.read(loginProvider.notifier);
                   notifier.login(

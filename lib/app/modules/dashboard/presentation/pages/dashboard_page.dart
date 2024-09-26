@@ -53,6 +53,7 @@ class _DashboardPageState extends ConsumerState<DashboardPage> {
     );
     return Scaffold(
       backgroundColor: colors.alwaysBlack,
+      key: const Key("DashboardPage"),
       body: workoutsState.when(
         initial: () {
           return const SizedBox();
@@ -85,6 +86,7 @@ class _DashboardPageState extends ConsumerState<DashboardPage> {
                       alignment: Alignment.centerLeft,
                       child: MagicIcon(
                         icon: Icons.person_rounded,
+                        key: const Key("profileButton"),
                         onTap: () {
                           pushTo(context, const ProfilePage());
                         },
@@ -171,6 +173,7 @@ class _DashboardPageState extends ConsumerState<DashboardPage> {
                           ),
                           MagicIcon(
                             icon: Icons.add_rounded,
+                            key: const Key("addWorkoutButton"),
                             onTap: () {
                               pushTo(context, const WorkoutPage());
                             },

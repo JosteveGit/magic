@@ -72,6 +72,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
               ),
               CustomButton(
                 text: "Logout",
+                key: const Key("logoutButton"),
                 onPressed: () {
                   Preferences.clear();
                   pushToAndClearStack(context, const LoginPage());

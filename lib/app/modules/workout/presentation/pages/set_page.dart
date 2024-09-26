@@ -68,6 +68,7 @@ class _SetPageState extends ConsumerState<SetPage> {
     final colors = ref.read(appThemeProvider).colors;
     return Scaffold(
       backgroundColor: colors.alwaysBlack,
+      key: const Key("SetPage"),
       body: SafeArea(
         child: Container(
           padding: const EdgeInsets.all(20),
@@ -116,6 +117,7 @@ class _SetPageState extends ConsumerState<SetPage> {
                       const SizedBox(height: 24),
                       CustomTextField(
                         headerText: "Weight (kg)",
+                        key: const Key("weight"),
                         keyboardType: TextInputType.number,
                         textEditingController: weightController,
                         onChanged: (value) {
@@ -131,6 +133,7 @@ class _SetPageState extends ConsumerState<SetPage> {
                       const SizedBox(height: 24),
                       CustomTextField(
                         headerText: "Repetitions",
+                        key: const Key("repetitions"),
                         keyboardType: TextInputType.number,
                         textEditingController: repetitionsController,
                         onChanged: (value) {
@@ -147,6 +150,7 @@ class _SetPageState extends ConsumerState<SetPage> {
               ),
               CustomButton(
                 text: "Save",
+                key: const Key("saveSetButton"),
                 onPressed: () {
                   pop(context);
                   final model = SetModel(
