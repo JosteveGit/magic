@@ -8,6 +8,7 @@ import 'package:magic/app/modules/workout/presentation/providers/delete_workout/
 import 'package:magic/app/modules/workout/presentation/providers/delete_workout/delete_workout_state.dart';
 import 'package:magic/app/shared/extensions/context_extension.dart';
 import 'package:magic/app/shared/functions/app_functions.dart';
+import 'package:magic/app/shared/functions/dialog_functions.dart';
 import 'package:magic/app/shared/presentation/widgets/custom_button.dart';
 import 'package:magic/app/shared/presentation/widgets/loader.dart';
 import 'package:magic/app/shared/presentation/widgets/magic_icon.dart';
@@ -62,9 +63,9 @@ class _DashboardPageState extends ConsumerState<DashboardPage> {
           return Loader.small();
         },
         success: (workouts) {
-          final totalWeight = workouts.fold<double>(
+          final totalReps = workouts.fold<int>(
             0,
-            (previousValue, element) => previousValue + element.totalWeight,
+            (previousValue, element) => previousValue + element.totalReps,
           );
           final totalSets = workouts.fold<int>(
             0,
@@ -111,13 +112,13 @@ class _DashboardPageState extends ConsumerState<DashboardPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Icon(
-                          Icons.fitness_center_rounded,
-                          size: 18,
+                          Icons.sports_gymnastics_rounded,
+                          size: 20,
                           color: colors.secondary,
                         ),
                         const SizedBox(width: 5),
                         Text(
-                          "$totalWeight total KG",
+                          "$totalSets total sets",
                           style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w300,
@@ -134,13 +135,13 @@ class _DashboardPageState extends ConsumerState<DashboardPage> {
                           ),
                         ),
                         Icon(
-                          Icons.sports_gymnastics_rounded,
-                          size: 20,
+                          Icons.fitness_center_rounded,
+                          size: 18,
                           color: colors.secondary,
                         ),
                         const SizedBox(width: 5),
                         Text(
-                          "$totalSets total sets",
+                          "$totalReps total reps",
                           style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w300,
@@ -201,6 +202,34 @@ class _DashboardPageState extends ConsumerState<DashboardPage> {
                               children: [
                                 for (final workout in workouts) ...[
                                   Dismissible(
+                                    background: Container(
+                                      color: Colors.transparent,
+                                      padding: const EdgeInsets.all(50),
+                                      child: const Align(
+                                        alignment: Alignment.centerRight,
+                                        child: Text(
+                                          "Delete",
+                                          style: TextStyle(
+                                            color: Colors.red,
+                                            fontSize: 14,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    direction: DismissDirection.endToStart,
+                                    confirmDismiss: (_) async {
+                                      bool shouldDelete = false;
+                                      await showReusableDialog(
+                                        context,
+                                        title: "Delete workout",
+                                        message:
+                                            "Are you sure you want to delete this workout?",
+                                        onClosed: () {
+                                          shouldDelete = true;
+                                        },
+                                      );
+                                      return shouldDelete;
+                                    },
                                     onDismissed: (_) {
                                       final deleteNotifier = ref.read(
                                         deleteWorkoutProvider.notifier,
@@ -210,7 +239,8 @@ class _DashboardPageState extends ConsumerState<DashboardPage> {
                                     key: ValueKey(workout.id),
                                     child: Container(
                                       padding: const EdgeInsets.symmetric(
-                                          horizontal: 20),
+                                        horizontal: 20,
+                                      ),
                                       child: WorkoutItem(workout: workout),
                                     ),
                                   ),

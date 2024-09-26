@@ -37,7 +37,7 @@ void main() {
           createTestWidget(child: WorkoutItem(workout: testWorkoutModel)));
 
       expect(find.text(testWorkoutModel.formattedDate), findsOneWidget);
-      expect(find.text('${testWorkoutModel.totalWeight} KG'), findsOneWidget);
+      expect(find.text('${testWorkoutModel.totalReps} KG'), findsOneWidget);
       expect(
         find.text(numberSuffixWord(testWorkoutModel.totalSets, "set")),
         findsOneWidget,

@@ -7,9 +7,9 @@ class WorkoutModel {
   final String id;
   final Timestamp date;
 
-  double get totalWeight {
+  int get totalReps {
     return sets.fold(
-        0.0, (previousValue, element) => previousValue + element.weight);
+        0, (previousValue, element) => previousValue + element.repetitions);
   }
 
   int get totalSets => sets.length;

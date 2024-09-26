@@ -58,13 +58,13 @@ class WorkoutItem extends ConsumerWidget {
             Row(
               children: [
                 Icon(
-                  Icons.fitness_center_rounded,
-                  size: 18,
+                  Icons.sports_gymnastics_rounded,
+                  size: 20,
                   color: colors.alwaysWhite,
                 ),
                 const SizedBox(width: 5),
                 Text(
-                  "${workout.totalWeight} KG",
+                  numberSuffixWord(workout.totalSets, "set"),
                   style: TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w300,
@@ -83,13 +83,13 @@ class WorkoutItem extends ConsumerWidget {
                   ),
                 ),
                 Icon(
-                  Icons.sports_gymnastics_rounded,
-                  size: 20,
+                  Icons.fitness_center_rounded,
+                  size: 18,
                   color: colors.alwaysWhite,
                 ),
                 const SizedBox(width: 5),
                 Text(
-                  numberSuffixWord(workout.totalSets, "set"),
+                  "${workout.totalReps} reps",
                   style: TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w300,

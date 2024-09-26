@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:magic/app/modules/workout/data/models/set_model.dart';
 import 'package:magic/app/modules/workout/presentation/widgets/set_type_image.dart';
+import 'package:magic/app/shared/functions/dialog_functions.dart';
 import 'package:magic/core/framework/theme/colors/app_theme_provider.dart';
 
 class SetItem extends ConsumerWidget {
@@ -20,8 +21,35 @@ class SetItem extends ConsumerWidget {
     final colors = ref.watch(appThemeProvider).colors;
     return Dismissible(
       key: ValueKey(model),
+      direction: DismissDirection.endToStart,
+      background: Container(
+        color: Colors.transparent,
+        padding: const EdgeInsets.all(0),
+        child: const Align(
+          alignment: Alignment.centerRight,
+          child: Text(
+            "Delete",
+            style: TextStyle(
+              color: Colors.red,
+              fontSize: 12,
+            ),
+          ),
+        ),
+      ),
       onDismissed: (_) {
         onDismissed?.call();
+      },
+      confirmDismiss: (_) async {
+        bool shouldDelete = false;
+        await showReusableDialog(
+          context,
+          title: "Delete set",
+          message: "Are you sure you want to delete this set?",
+          onClosed: () {
+            shouldDelete = true;
+          },
+        );
+        return shouldDelete;
       },
       child: GestureDetector(
         onTap: onTap,

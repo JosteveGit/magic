@@ -16,7 +16,6 @@ void main() {
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );
-    // Any other setup needed before your tests run
   });
 
   group('end-to-end test', () {
